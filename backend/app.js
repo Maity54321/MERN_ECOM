@@ -36,4 +36,11 @@ app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/payment", paymentRouter);
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    status: "Server is running",
+  });
+});
+
 module.exports = app;
