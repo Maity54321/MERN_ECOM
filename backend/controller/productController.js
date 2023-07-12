@@ -55,14 +55,21 @@ exports.viewProducts = async (req, res)=>{
 exports.getProduct = async(req, res, next)=>{
     const product = await productModel.findById(req.params.id);
 
-    if(!product) return res.status(500).json({
-        success:false,
-        message:"Product Not Found"
-    })
+     try {
+    if (!product)
+      return res.status(500).json({
+        success: false,
+        message: "Product Not Found",
+      });
 
     res.status(200).json({
-        product
-    })
+      product,
+    });
+  } catch (error) {
+    res.status(201).json({
+      error: error,
+    });
+  }
 }
 
 // Update Product
