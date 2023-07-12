@@ -44,7 +44,7 @@ exports.paymentVerification = async (req, res) => {
     });
     // console.log(paymentDetails);
     res.redirect(
-      `https://mern-ecom-frontend.vercel.app/paymentsuccess?reference=${razorpay_payment_id}`
+      `https//localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
     );
   } else {
     res.status(400).json({ success: false });
