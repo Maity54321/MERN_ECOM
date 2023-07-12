@@ -20,7 +20,6 @@ mongoose
   });
 // }
 
-module.exports = connectDatabase;
 
 const instance = new Razorpay({
   key_id: process.env.RAZORPAY_API_KEY,
