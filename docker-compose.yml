@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  mern_ecom:
+    restart: always
+    build: .
+    container_name: mern-ecom
+    image: mern-ecom-latest
+    ports:
+      - "4000:4000"
+    env_file:
+      - backend/config/config.env
+    volumes:
+      - ./app-data:/app/data  # Map host directory to container directory
