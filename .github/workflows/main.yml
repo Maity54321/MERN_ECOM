@@ -47,7 +47,7 @@ jobs:
   #     - name: Nice working
   #       run: echo "Client Changes Detected"
 
-  server:
+  backend:
     needs: check-changes
     runs-on: ubuntu-latest
     if: needs.check-changes.outputs.server_changed == 'true'
