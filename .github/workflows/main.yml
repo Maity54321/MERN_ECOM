@@ -19,13 +19,13 @@ jobs:
 
       - name: Show changed files
         run: git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-      # - name: Check for changes in client
-      #   id: client_changed
-      #   uses: dorny/paths-filter@v3
-      #   with:
-      #     filters: |
-      #       client:
-      #         - "client/**"
+      - name: Check for changes in client
+        id: client_changed
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            client:
+              - "client/**"
 
       - name: Check for changes in server
         id: server_changed
@@ -39,18 +39,18 @@ jobs:
         run: |
           echo "Backend: ${{ steps.server_changed.outputs.backend }}"
 
-  # client:
-  #   needs: check-changes
-  #   runs-on: ubuntu-latest
-  #   if: needs.check-changes.outputs.client_changed == 'true'
-  #   steps:
-  #     - name: Nice working
-  #       run: echo "Client Changes Detected"
+  client:
+    needs: check-changes
+    runs-on: ubuntu-latest
+    if: needs.check-changes.outputs.client_changed == 'true'
+    steps:
+      - name: Nice working
+        run: echo "Client Changes Detected"
 
   backend:
     needs: check-changes
     runs-on: ubuntu-latest
-    # if: needs.check-changes.outputs.server_changed == 'true'
+    if: needs.check-changes.outputs.server_changed == 'true'
     steps:
       - name: Debug Outputs
         run: |
