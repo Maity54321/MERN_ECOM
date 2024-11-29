@@ -34,6 +34,9 @@ jobs:
           filters: |
             backend:
               - 'backend/**/*'
+      - name: Debug filter outputs
+        run: |
+          echo "Backend: ${{ steps.filter.outputs.backend }}"
 
   # client:
   #   needs: check-changes
