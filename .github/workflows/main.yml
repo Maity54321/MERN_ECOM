@@ -21,7 +21,7 @@ jobs:
         with:
           filters: |
             client:
-              - 'client/**'
+              - "client/**"
 
       - name: Check for changes in server
         id: server_changed
@@ -29,7 +29,7 @@ jobs:
         with:
           filters: |
             server:
-              'backend/**'
+              "backend/**"
 
   client:
     needs: check-changes
