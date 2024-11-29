@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       client_changed: ${{steps.client_changed.client}}
-      server_changed: ${{steps.server_changed.server}}
+      server_changed: ${{steps.server_changed.backend}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
         uses: dorny/paths-filter@v3
         with:
           filters: |
-            server:
+            backend:
               - 'backend/**'
 
   client:
