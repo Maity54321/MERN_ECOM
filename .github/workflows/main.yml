@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       client_changed: ${{steps.client_changed.outputs.client}}
-      server_changed: ${{steps.server_changed.outputs.backend}}
+      server_changed: ${{steps.server_changed.outputs.server}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -32,12 +32,12 @@ jobs:
         uses: dorny/paths-filter@v3
         with:
           filters: |
-            backend:
+            server:
               - 'backend/**/*'
 
       - name: Debug filter outputs
         run: |
-          echo "Backend: ${{ steps.server_changed.outputs.backend }}"
+          echo "Backend: ${{ steps.server_changed.outputs.server }}"
 
   client:
     needs: check-changes
@@ -47,7 +47,7 @@ jobs:
       - name: Nice working
         run: echo "Client Changes Detected"
 
-  backend:
+  server:
     needs: check-changes
     runs-on: ubuntu-latest
     if: needs.check-changes.outputs.server_changed == 'true'
