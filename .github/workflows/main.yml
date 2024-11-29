@@ -15,13 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Check for changes in client
-        id: client_changed
-        uses: dorny/paths-filter@v3
-        with:
-          filters: |
-            client:
-              - "client/**"
+      # - name: Check for changes in client
+      #   id: client_changed
+      #   uses: dorny/paths-filter@v3
+      #   with:
+      #     filters: |
+      #       client:
+      #         - "client/**"
 
       - name: Check for changes in server
         id: server_changed
@@ -29,15 +29,15 @@ jobs:
         with:
           filters: |
             backend:
-              - 'backend/**'
+              - 'backend/**/*'
 
-  client:
-    needs: check-changes
-    runs-on: ubuntu-latest
-    if: needs.check-changes.outputs.client_changed == 'true'
-    steps:
-      - name: Nice working
-        run: echo "Client Changes Detected"
+  # client:
+  #   needs: check-changes
+  #   runs-on: ubuntu-latest
+  #   if: needs.check-changes.outputs.client_changed == 'true'
+  #   steps:
+  #     - name: Nice working
+  #       run: echo "Client Changes Detected"
 
   server:
     needs: check-changes
