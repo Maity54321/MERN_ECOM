@@ -50,7 +50,7 @@ jobs:
   backend:
     needs: check-changes
     runs-on: ubuntu-latest
-    if: needs.check-changes.outputs.server_changed == 'true'
+    # if: needs.check-changes.outputs.server_changed == 'true'
     steps:
       - name: Debug Outputs
         run: echo "Server Changes ${{needs.check-changes.outputs.server_changed}}"
