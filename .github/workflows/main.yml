@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       client_changed: ${{steps.client_changed.client}}
-      client_changed: ${{steps.server_changed.server}}
+      server_changed: ${{steps.server_changed.server}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
