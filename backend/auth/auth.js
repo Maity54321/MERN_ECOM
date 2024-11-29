@@ -1,9 +1,9 @@
 const express = require("express");
 const { userModel } = require("../models/userModel");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
-const jwt = require("jsonwebtoken");
 const config = require("config");
 
 const router = express.Router();
