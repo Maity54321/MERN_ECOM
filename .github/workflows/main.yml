@@ -53,6 +53,7 @@ jobs:
     # if: needs.check-changes.outputs.server_changed == 'true'
     steps:
       - name: Debug Outputs
-        run: echo "Server Changes ${{ needs.check-changes.outputs }}"
+        run: |
+          echo "Server Changed: ${{ needs.check-changes.outputs.server_changed }}"
       - name: Nice working
         run: echo "Server Changes Detected"
