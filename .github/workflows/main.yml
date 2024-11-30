@@ -44,8 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.check-changes.outputs.client_changed == 'true'
     steps:
-      - name: Nice working
-        run: echo "Client Changes Detected"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
   server:
     needs: check-changes
@@ -55,5 +55,29 @@ jobs:
       - name: Debug Outputs
         run: |
           echo "Server Changed: ${{ needs.check-changes.outputs.server_changed }}"
-      - name: Nice working
-        run: echo "Server Changes Detected"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Creating Docker Image
+        run: |
+          docker build -t server:latest maity54321/ecom-server .
+      
+      - name: Pushing Docker Image
+        env: 
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker push maity54321/ecom-server
+          docker logout
+
+      - name: SSH Login and Deploy
+        env:
+        SSH_USERNAME: ${{secrets.SSH_USERNAME}}
+        SSH_PASSWORD: ${{secrets.SSH_PASSWORD}}
+        SSH_HOST: ${{secrets.SSH_HOST}}
+        run: |
+          pacman -Syu -y
+          pacman -S sshpass
+          sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no $SSH_USERNAME@SSH_HOST
+          'sudo docker pull maity54321/ecom-server && cd ~/Documents/DeployBackend && sudo docker compose up -d --no-deps --build server && exit'
