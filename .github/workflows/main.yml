@@ -60,7 +60,7 @@ jobs:
       
       - name: Creating Docker Image
         run: |
-          docker build -t server:latest maity54321/ecom-server .
+          docker build -t maity54321/ecom-server .
       
       - name: Pushing Docker Image
         env: 
