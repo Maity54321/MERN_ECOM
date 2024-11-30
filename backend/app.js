@@ -39,7 +39,7 @@ app.use("/api/v1/payment", paymentRouter);
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    status:200,
+    // status:200,
     message: "Server is running",
   });
 });
