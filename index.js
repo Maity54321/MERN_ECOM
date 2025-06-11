@@ -40,9 +40,10 @@ cloudinary.v2.config({
 //     })
 // }
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server started at localhost:${process.env.PORT}`);
-});
+//app.listen(process.env.PORT, () => {
+//  console.log(`Server started at localhost:${process.env.PORT}`);
+//});
 
 // module.exports = instance;
+module.exports = app;
 exports.instance = instance;
