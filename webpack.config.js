@@ -8,7 +8,7 @@ module.exports = {
   externals: [nodeExternals()], // ignores node_modules
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'server.js',
+    filename: 'index.js',
   },
   resolve: {
     extensions: ['.ts', '.js'], // add '.ts' if using TypeScript
