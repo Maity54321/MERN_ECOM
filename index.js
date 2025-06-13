@@ -46,4 +46,4 @@ cloudinary.v2.config({
 
 // module.exports = instance;
 module.exports = app;
-exports.instance = instance;
+module.exports.handler = serverless(app);
