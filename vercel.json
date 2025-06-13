@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "npm run build && npm install --save-dev webpack webpack-cli webpack-node-externals nodemon ts-loader typescript",
-  "outputDirectory": "dist",
+  "builds": [
+    { "src": "dist/index.js", "use": "@vercel/node" }
+  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "dist/index.js"
     }
   ]
 }
