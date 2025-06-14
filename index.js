@@ -46,5 +46,5 @@ cloudinary.v2.config({
 //  console.log(`Server started at localhost:${process.env.PORT}`);
 //});
 // module.exports = instance;
-module.exports = app;
-module.exports.handler = serverless(app);
+module.exports = serverless(app);
+// module.exports.handler = ;
