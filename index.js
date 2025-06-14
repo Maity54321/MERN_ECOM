@@ -5,6 +5,8 @@ const cloudinary = require("cloudinary");
 const express = require("express");
 const Razorpay = require("razorpay");
 const mongoose = require("mongoose");
+const serverless = require('serverless-http');
+const cors = require("cors");
 
 dotenv.config({ path: "backend/config/config.env" });
 
@@ -43,7 +45,6 @@ cloudinary.v2.config({
 //app.listen(process.env.PORT, () => {
 //  console.log(`Server started at localhost:${process.env.PORT}`);
 //});
-
 // module.exports = instance;
 module.exports = app;
 module.exports.handler = serverless(app);

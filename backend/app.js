@@ -13,13 +13,13 @@ const paymentRouter = require("./routes/paymentRoutes");
 const dotenv = require("dotenv");
 
 const app = express();
-if (!config.get("jwtPrivateKey")) {
+if (process.env.jwtPrivateKey == "jwtPrivateKey") {
   console.log("Fatal Error: JWT private Key Not Set");
   process.exit(0);
 }
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:'*'}));
 app.use(express.urlencoded({ extended: true }));
 // app.use(fileUpload());
 
