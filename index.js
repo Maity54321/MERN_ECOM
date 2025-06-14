@@ -5,7 +5,7 @@ const cloudinary = require("cloudinary");
 const express = require("express");
 const Razorpay = require("razorpay");
 const mongoose = require("mongoose");
-const serverless = require('serverless-http');
+const serverless = require('serverless-http'); // 👈 needed for Vercel
 
 dotenv.config({ path: "backend/config/config.env" });
 
@@ -33,6 +33,10 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
 });
 
+// Export as a Vercel handler
+module.exports = app;
+module.exports.handler = serverless(app);
+
 // if(process.env.NODE_ENV == "production"){
 //     const path = require('path');
 //     app.use(express.ststic(path.resolve(__dirname, 'frontend', 'build')));
@@ -41,8 +45,8 @@ cloudinary.v2.config({
 //     })
 // }
 
-app.listen(process.env.PORT, () => {
- console.log(`Server started at localhost:${process.env.PORT}`);
-});
+// app.listen(process.env.PORT, () => {
+//  console.log(`Server started at localhost:${process.env.PORT}`);
+// });
 
 // module.exports = instance;

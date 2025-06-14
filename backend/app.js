@@ -44,4 +44,12 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/test", (req, res) => {
+  res.json({
+    success: true,
+    status:200,
+    message: "Test Server is running",
+  });
+});
+
 module.exports = app;

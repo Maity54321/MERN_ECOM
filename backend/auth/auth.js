@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
       "createdAt",
       "image",
     ]);
-    validation = jwt.sign(validation, config.get("jwtPrivateKey"));
+    validation = jwt.sign(validation, process.env.jwtPrivateKey);
     res.send(validation);
   }
 });
